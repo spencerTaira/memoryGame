@@ -9,7 +9,7 @@ const COLORS = [
 ];
 
 const colors = shuffle(COLORS);
-
+const cardClick = handleCardClick();
 createCards(colors);
 
 
@@ -43,6 +43,10 @@ function createCards(colors) {
 
   for (let color of colors) {
     // missing code here ...
+    const card = document.createElement('div')
+    card.classList.add(`${color}`);
+    card.addEventListener('click', cardClick)
+    gameBoard.appendChild(card);
   }
 }
 
@@ -50,16 +54,39 @@ function createCards(colors) {
 
 function flipCard(card) {
   // ... you need to write this ...
+  card.style.backgroundColor = card.classList[0];
+  return card;
 }
 
 /** Flip a card face-down. */
 
-function unFlipCard(card) {
+function unFlipCard(card1, card2) {
   // ... you need to write this ...
+  card1.style.backgroundColor = 'white';
+  card2.style.backgroundColor = 'white';
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
-function handleCardClick(evt) {
+function handleCardClick() {
   // ... you need to write this ...
+  let count = 0;
+  let firstPick = '';
+  return (e) => {
+    if (e.target === firstPick) return;
+    if (count === 0) {
+      firstPick = flipCard(e.target);
+      count++;
+    } else if (firstPick.style.backgroundColor === flipCard(e.target).style.backgroundColor) {
+      firstPick.removeEventListener('click', cardClick);
+      e.target.removeEventListener('click', cardClick);
+      console.log('match');
+      count = 0;
+    } else {
+      console.log('no match');
+      setTimeout(unFlipCard, 1250, firstPick, e.target);
+      count = 0;
+    }
+  }
 }
+
