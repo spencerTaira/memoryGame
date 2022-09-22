@@ -1,9 +1,22 @@
 /* you can add to or change this. */
 
-#game div {
+/*#game div {
   border: 1px solid black;
   width: 100px;
   height: 100px;
   margin: 20px;
   display: inline-block;
+}*/
+
+#game {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  border: 0px;
+}
+
+div {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
 }
