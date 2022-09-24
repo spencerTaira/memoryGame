@@ -12,11 +12,12 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   border: 0px;
+  margin: 20px;
 }
 
 div {
   border: 1px solid black;
   width: 100px;
   height: 100px;
-  margin: 10px;
+  margin: 5px;
 }
